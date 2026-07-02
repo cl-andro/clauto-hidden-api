@@ -9,7 +9,6 @@ import android.content.pm.UserInfo;
 import android.os.Build;
 import android.os.IUserManager;
 import android.os.RemoteException;
-import android.util.ArraySet;
 
 import androidx.annotation.NonNull;
 
@@ -80,7 +79,7 @@ public class UserManagerApis {
     }
 
     public static Collection<Integer> getUserIdsNoThrow(boolean excludePartial, boolean excludeDying, boolean excludePreCreated) {
-        Set<Integer> result = new ArraySet<>();
+        Set<Integer> result = new java.util.HashSet<>();
         try {
             for (UserInfo it : getUsers(excludePartial, excludeDying, excludePreCreated)) {
                 result.add(it.id);
