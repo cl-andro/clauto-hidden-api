@@ -1,0 +1,39 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+    }
+    plugins {
+        id("com.android.application") version "8.10.0"
+        id("com.android.library") version "8.10.0"
+        id("com.clauto.tools.refine") version "4.4.0"
+    }
+}
+plugins {
+    id("com.android.settings") version "8.10.0"
+}
+android {
+    compileSdk = 36
+    minSdk = 21
+    targetSdk = 36
+    buildToolsVersion = "36.0.0"
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+    }
+    versionCatalogs {
+        libs {
+            version('refine', '4.4.0')
+            library('refine-runtime', 'com.clauto.tools.refine', 'runtime').versionRef('refine')
+            library('refine-annotation', 'com.clauto.tools.refine', 'annotation').versionRef('refine')
+            library('refine-annotation-processor', 'com.clauto.tools.refine', 'annotation-processor').versionRef('refine')
+        }
+    }
+}
+include ':stub'
+include ':compat'
