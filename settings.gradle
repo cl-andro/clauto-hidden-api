@@ -3,6 +3,13 @@ pluginManagement {
         google()
         mavenCentral()
         mavenLocal()
+        maven {
+            url("https://maven.pkg.github.com/cl-andro/clauto-refine")
+            credentials {
+                username = findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = findProperty("gpr.read.key") ?: System.getenv("GPR_READ_TOKEN") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
     plugins {
         id("com.android.application") version "8.10.0"
@@ -25,6 +32,13 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         mavenLocal()
+        maven {
+            url("https://maven.pkg.github.com/cl-andro/cl-autoX")
+            credentials {
+                username = findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = findProperty("gpr.read.key") ?: System.getenv("GPR_READ_TOKEN") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
     versionCatalogs {
         libs {
