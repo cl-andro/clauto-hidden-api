@@ -24,7 +24,14 @@ subprojects {
         } else {
             group = "${groupIdBase}.${project.parent.name}"
         }
-        version = version_name
+
+        def rawSuiteVersion = project.hasProperty("suiteVersion") ? project.property("suiteVersion").toString() : ""
+        if (rawSuiteVersion.startsWith("v")) {
+            rawSuiteVersion = rawSuiteVersion.substring(1)
+        }
+        def projectVersion = !rawSuiteVersion.isEmpty() ? rawSuiteVersion : version_name
+
+        version = projectVersion
         println("${project.displayName}: ${group}:${project.name}:${version}")
 
         publishing {
@@ -32,7 +39,7 @@ subprojects {
                 mavenJava(MavenPublication) {
                     group project.group
                     artifactId project.name
-                    version version_name
+                    version projectVersion
                     afterEvaluate {
                         from components.release
                     }
